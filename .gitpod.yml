@@ -1,10 +1,16 @@
 image:
   file: .gitpod.Dockerfile
-
 tasks:
-  - init: ./setup.sh
+  - init: |
+      sudo apt update
+      sudo apt install -y apache2 mysql-server php php-mysql libapache2-mod-php unzip wget
+      sudo sed -i 's/Listen 80/Listen 8080/' /etc/apache2/ports.conf
+      sudo sed -i 's/:80/:8080/g' /etc/apache2/sites-enabled/000-default.conf
+      sudo service mysql start
+      sudo service apache2 start
+      ./setup.sh
   - command: echo "HelpDeskZ est prêt, accède à http://localhost:8080/helpdeskz"
-  
+
 ports:
   - port: 80
     onOpen: open-browser
