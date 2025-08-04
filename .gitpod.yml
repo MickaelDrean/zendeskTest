@@ -1,0 +1,10 @@
+image:
+  file: .gitpod.Dockerfile
+
+tasks:
+  - init: ./setup.sh
+  - command: echo "HelpDeskZ est prêt, accède à http://localhost:8080/helpdeskz"
+  
+ports:
+  - port: 80
+    onOpen: open-browser
